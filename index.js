@@ -37,7 +37,7 @@ mongoose.connect(config.uri,  { useNewUrlParser: true }, (err) => {
   });
 // ROUTER SERVICE
 
-
+app.use((req, res) => res.sendFile(INDEX) )
 
 app.use(cors ('Access-Controll-Allow-Origin', '*'));
 
