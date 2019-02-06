@@ -42,7 +42,8 @@ mongoose.connect(config.uri,  { useNewUrlParser: true }, (err) => {
 
 app.use((req, res) => res.sendFile(INDEX) )
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Headers: "Origin, X-Requested-With, Content-Type, Accept"');
+  res.header("Access-Control-Allow-Origin: *", false);
 
   // Pass to next layer of middleware
   next();
