@@ -8,7 +8,10 @@ const cors = require ('cors');
 logger = require ('morgan');
 const router = express.Router();
 const config = require ('./config/database');
-const server = app.listen(8080);
+app.set('port', (process.env.PORT || 8080));
+const server = app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 const io = require('socket.io').listen(server);
 const env = require('./env');
 const authentication = require ('./router/user');
