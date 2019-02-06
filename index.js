@@ -38,8 +38,11 @@ mongoose.connect(config.uri,  { useNewUrlParser: true }, (err) => {
 // ROUTER SERVICE
 
 app.use((req, res) => res.sendFile(INDEX) )
+app.use(cors('Access-Control-Allow-Origin', '*'));
+app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
+app.use(logger('dev'));
 
-app.use(cors ('Access-Controll-Allow-Origin', '*'));
 
 app.use(bodyParser.json());
 
