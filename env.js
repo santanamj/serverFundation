@@ -6,6 +6,6 @@ if (fs.existsSync('./public')) {
   process.env.databaseName = 'production database: angular-2-app'; // Database name
 } else {
   process.env.NODE_ENV = 'development';
-  process.env.databaseUri = 'mongodb://localhost:27017/loze'; // Databse URI and database name
-  process.env.databaseName = 'development database:loze'; // Database name
+  process.env.databaseUri = 'mongodb://msantana:0211ms11d4@ds018258.mlab.com:18258/burguer'; // Databse URI and database name
+  process.env.databaseName = 'development burguer-service'; // Database name
 }
