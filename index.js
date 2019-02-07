@@ -23,7 +23,9 @@ const orderController = require ('./controllers/order');
 app.use(cors('Access-Control-Allow-Origin', '*'));
 
 io.on('connection', (socket)=>{
-  
+ socket.on('connect_error', function (data) {
+    console.log('connection_error');
+});
   console.log("Connected to Socket!!"+ socket.id);
   socket.on('addPedido', (pedido) => {
     console.log('socketData: ', pedido);
