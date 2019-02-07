@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const path = require ('path');
 const cors = require ('cors');
 logger = require ('morgan');
+const SourceMapSupport = require('source-map-support');
 const router = express.Router();
 const config = require ('./config/database');
 app.set('port', (process.env.PORT || 8080));
@@ -46,7 +47,7 @@ app.use((req, res) => res.sendFile(INDEX) )
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use(logger('dev'));
-
+SourceMapSupport.install();
 
 app.use(bodyParser.json());
 
