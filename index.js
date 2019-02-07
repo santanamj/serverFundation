@@ -20,7 +20,7 @@ const product = require ('./router/product');
 const order = require ('./router/order');
 const orderController = require ('./controllers/order');
 app.use(cors('Access-Control-Allow-Origin', '*'));
-app.use(bodyParser.urlencoded({ extended: false }));
+
 io.on('connection', (socket)=>{
   
   console.log("Connected to Socket!!"+ socket.id);
@@ -63,4 +63,6 @@ app.use('/static', express.static(__dirname + '/public'));
       return res.end('Api working');
     });
    
-
+    app.use((req, res, next) => {
+      res.status(404).send('<h2 align=center>Page Not Found!</h2>');
+    });
