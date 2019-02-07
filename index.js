@@ -19,7 +19,8 @@ const category = require ('./router/category');
 const product = require ('./router/product');
 const order = require ('./router/order');
 const orderController = require ('./controllers/order');
-
+app.use(cors('Access-Control-Allow-Origin', '*'));
+app.use(bodyParser.urlencoded({ extended: false }));
 io.on('connection', (socket)=>{
   
   console.log("Connected to Socket!!"+ socket.id);
@@ -41,13 +42,7 @@ mongoose.connect(config.uri,  { useNewUrlParser: true }, (err) => {
 // ROUTER SERVICE
 
 app.use((req, res) => res.sendFile(INDEX) )
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Headers: "Origin, X-Requested-With, Content-Type, Accept"');
-  res.header("Access-Control-Allow-Origin: *", false);
 
-  // Pass to next layer of middleware
-  next();
-});
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use(logger('dev'));
