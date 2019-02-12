@@ -59,6 +59,7 @@ exports.usernotifyAdd = (req, res) => {
     console.log('dados enviados', data);
     
         data = {
+            to: "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
             "data": {
                 "title": title
             }
@@ -72,10 +73,10 @@ exports.usernotifyAdd = (req, res) => {
             method: 'POST',
             headers: headers
         }
-        var notificationKey = "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo";
+       
         console.log('otions', options)
         console.log('result', result);
-        fcm.send(options, result, data, notificationKey, (err, res)=>{
+        fcm.send(options, result, data, (err, res)=>{
             if (err) {
               res.status(404).send({message: 'Não autorizado receber notificação'});
             }
