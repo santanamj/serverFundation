@@ -61,7 +61,7 @@ exports.usernotifyAdd = (req, res) => {
         data = {
             to: "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
             "data": {
-                "title": title
+                "title": pedido
             }
         }
         const headers = {
