@@ -19,9 +19,9 @@ exports.addOrder = (req, res, next) => {
             User.find({}).select('registerfcm').then((users) => {
                
               //  const result = users.map(user => user.registerfcm);
-              const token= "cxptDN0ciY4:APA91bF-75Epya3afzKGsSCMw47SxYQrXvDuxxT_OeVOxJT3wDVL8FUBfk6z8HYeQmFAmv1arH9rFyCHJPENWNZ1du-4DYLNaRuuHC66XPTg7KICVscX4KC-xnbRBRqTJcX3j3aQfTi7"
+              //const token= "cxptDN0ciY4:APA91bF-75Epya3afzKGsSCMw47SxYQrXvDuxxT_OeVOxJT3wDVL8FUBfk6z8HYeQmFAmv1arH9rFyCHJPENWNZ1du-4DYLNaRuuHC66XPTg7KICVscX4KC-xnbRBRqTJcX3j3aQfTi7"
                 var fcmData= {
-                    to: token,                   
+                    to: "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",                   
                     "data": {
                         "title": "Novo produto"
                     },
