@@ -67,18 +67,10 @@ exports.usernotifyAdd = (req, res) => {
                 "title": title
             }
         }
-        const headers = {
-            'Authorization': 'key=AAAA6HgzMSw:APA91bF8VyfUYlyaEeObcDWd8FhiaU_qR6o6AvgTVFhezs7pSkAb3zSOsaUDMKOxRUM5kR4v1-Cnm_8i7TIsyshsOub1xJMIdu6UNVwNabirdVW4bG4kNlHwIjsUrdZv9HEqdDax-5PC',
-            'Content-Type': 'application/json'
-        }
-        const options = {
-            uri: 'https://fcm.googleapis.com/fcm/send',
-            method: 'POST',
-            headers: headers
-        }
+        var notificationKey = "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo";
         console.log('otions', options)
         console.log('result', result);
-        fcm.send(options, result, data, (err, res)=>{
+        fcm.send(data, notificationKey, (err, res)=>{
             if (err) {
               res.status(404).send({message: 'Não autorizado receber notificação'});
             }
