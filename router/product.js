@@ -6,5 +6,5 @@ var api = express.Router();
 
 api.post('/addProduct', productController.addProduct);
 api.get('/getProducts',  productController.getProducts );
-
+api.get('/getProduct/:id', productController.getProduct)
 module.exports = api;

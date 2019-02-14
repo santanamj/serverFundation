@@ -66,7 +66,7 @@ exports.getProducts = (req, res, next)=>{
         }
     })
 }
-exports.getoneProduct = (req, res, next)=>{
+exports.getProduct = (req, res, next)=>{
     const productId = req.params.id;
     Product.findById(productId,(err, product)=>{
         if(err){
