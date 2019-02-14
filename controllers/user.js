@@ -287,7 +287,7 @@ json: data
     const headers = {
       "operation": "add",
       "notification_key_name": "mana-burguer-music",
-      "notification_key": "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
+      "notification_key": "APA91bHWfFj1ogSdRnoURN6dsCB2-ayBNaBLXKTnSpLTMn7__0vS0Xb9bUG4Eu1pk_750rWkdHW7KGMIOKuofIowISzRyBxFolJY90WW3UgjqLMFQ6gxOYVl7r69odDGt5L-0uYjtM6A",
       'Content-Type': 'application/json'
 }
 
@@ -310,4 +310,11 @@ json: data
 
 //    {
 //     "notification_key": "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo"
+// }
+
+// {
+//   "operation": "add",
+//   "notification_key_name": "mana-burguer-music",
+//   "notification_key": "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
+//   "registration_ids": ["eKpKFXy6_bQ:APA91bEt2iiOoD-pRFyLvUuGc7XBzkm3oMrE1yhEZRAl6AZsLEK-wT7dJQVyxn7IAHco2kaHKqb3kMSY7GjkRa1874E1WNeCWnw8jcEVeq9ysoDh5lyGT7cOFwaQy6xK05OWI0mFZ0bK"]
 // }

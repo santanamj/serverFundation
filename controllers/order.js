@@ -16,12 +16,12 @@ exports.addOrder = (req, res, next) => {
             res.json({ success: false, message: err });
         } else {
             res.json({ success: true, message: 'Order saved!' });
-            User.find({}).select('registerfcm').then((users) => {
+           
                
               //  const result = users.map(user => user.registerfcm);
-              //const token= "cxptDN0ciY4:APA91bF-75Epya3afzKGsSCMw47SxYQrXvDuxxT_OeVOxJT3wDVL8FUBfk6z8HYeQmFAmv1arH9rFyCHJPENWNZ1du-4DYLNaRuuHC66XPTg7KICVscX4KC-xnbRBRqTJcX3j3aQfTi7"
+           //   const token= 
                 var fcmData= {
-                    to: "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",                   
+                    to: "APA91bHWfFj1ogSdRnoURN6dsCB2-ayBNaBLXKTnSpLTMn7__0vS0Xb9bUG4Eu1pk_750rWkdHW7KGMIOKuofIowISzRyBxFolJY90WW3UgjqLMFQ6gxOYVl7r69odDGt5L-0uYjtM6A",
                     "data": {
                         "title": "Novo produto"
                     },
@@ -50,7 +50,7 @@ exports.addOrder = (req, res, next) => {
                     }
                 });
 
-            })
+           
         }
     })
 }

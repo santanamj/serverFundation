@@ -66,3 +66,17 @@ exports.getProducts = (req, res, next)=>{
         }
     })
 }
+exports.getoneProduct = (req, res, next)=>{
+    const productId = req.params.id;
+    Product.findById(productId,(err, product)=>{
+        if(err){
+            res.status(500).send({message: 'Erro na solicitação'})
+        }else{
+            if(!product){
+            res.status(404).send({message:'Pedido não existe'})
+        }else{
+            res.status(200).send({product});
+        }
+    }
+    })
+}
