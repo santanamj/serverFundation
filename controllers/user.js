@@ -287,7 +287,7 @@ json: data
     const headers = {
       "operation": "add",
       "notification_key_name": "mana-burguer-music",
-      "notification_key": "APA91bHWfFj1ogSdRnoURN6dsCB2-ayBNaBLXKTnSpLTMn7__0vS0Xb9bUG4Eu1pk_750rWkdHW7KGMIOKuofIowISzRyBxFolJY90WW3UgjqLMFQ6gxOYVl7r69odDGt5L-0uYjtM6A",
+      "notification_key": "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm",
       'Content-Type': 'application/json'
 }
 
