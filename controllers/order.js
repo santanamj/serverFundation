@@ -21,7 +21,7 @@ exports.addOrder = (req, res, next) => {
               //  const result = users.map(user => user.registerfcm);
            //   const token= 
                 var fcmData= {
-                    to: "APA91bHWfFj1ogSdRnoURN6dsCB2-ayBNaBLXKTnSpLTMn7__0vS0Xb9bUG4Eu1pk_750rWkdHW7KGMIOKuofIowISzRyBxFolJY90WW3UgjqLMFQ6gxOYVl7r69odDGt5L-0uYjtM6A",
+                    to: "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm",
                     "data": {
                         "title": "Novo produto"
                     },
@@ -59,7 +59,7 @@ exports.usernotifyAdd = (req, res) => {
     console.log('dados enviados', data);
     
         data = {
-            to: "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm",
+            to: "f_Ze8f4G94s:APA91bGZOIbr7VKKAL0Lnk0ddrIr9s2MksVfePhwKUBtbbGGyHZbvggv4rz2BXqGV0d3r6K-JBnolKhVo5_WsixhhH4NYceg8BKzXN_8422fvJQU8uiTHjDyYCJt09bGPRN-r1fPZibo",
             "data": {
                 "title": pedido
             }
