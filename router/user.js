@@ -10,6 +10,6 @@ api.post('/login', AuthenticationControler.login);
 api.get('/checkEmail/:email', AuthenticationControler.checkEmail);
 api.get('/checkUsername/:username', AuthenticationControler.checkUsername);
 api.get('/profile', AuthenticationControler.use, AuthenticationControler.profile);
-api.put('/updateUser/:id', AuthenticationControler.use, AuthenticationControler.updateUser);
+api.put('/updateUser', AuthenticationControler.use, AuthenticationControler.updateUser);
 api.post('/usernotifyAdd', AuthenticationControler.use, AuthenticationControler.usernotifyAdd);
 module.exports = api;
