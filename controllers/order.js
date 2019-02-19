@@ -16,43 +16,27 @@ exports.addOrder = (req, res, next) => {
             res.json({ success: false, message: err });
         } else {
             res.json({ success: true, message: 'Order saved!' });
-           
-               
-              //  const result = users.map(user => user.registerfcm);
-           //   const token= 
-                var fcmData= {
-                    to: "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm",
-                    "data": {
-                        "title": "Novo produto"
-                    },
-                   
-                }
-                var message = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-                    to: 'registration_token', 
-                    collapse_key: 'your_collapse_key',
-                    
-                    notification: {
-                        title: 'Title of your push notification', 
-                        body: 'Body of your push notification' 
-                    },
-                    
-                    data: {  //you can send only notification or only data(or include both)
-                        my_key: 'my value',
-                        my_another_key: 'my another value'
-                    }
-                };
-                  console.log(fcmData);
-                fcm.send( fcmData, (err, res) => {
-                    if (err) {
-                        console.log("Something has gone wrong!");
-                    } else {
-                        console.log("Successfully sent with response: ", res);
-                    }
-                });
-
-           
-        }
+          }
     })
+}
+exports.notifyPush = (req, res) => {
+    var TopicName = '/topics/mana-music';
+    var fcmData = {
+        to: TopicName,
+        notification: {
+            title: 'Novo Pedido',
+            body: 'Novo pedido solicitado'
+        },
+
+    };
+    console.log(fcmData);
+    fcm.send(fcmData, (err, response) => {
+        if (err) {
+            console.log("Something has gone wrong!", err);
+        } else {
+            console.log("Successfully sent with response: ", response);
+        }
+    });
 }
 exports.usernotifyAdd = (req, res) => {
     const data = req.body;
@@ -93,7 +77,7 @@ exports.getOrders = (req, res, nex)=>{
             res.json({sucess: false, err})
         }else{
             res.send(Array.from(orders))
-            console.log(Array.from(orders));
+           // console.log(Array.from(orders));
         }
     }).sort({ '_id': -1 });
 }
@@ -138,18 +122,16 @@ exports.getoneOrder = (req, res, next)=>{
     })
 }
 exports.finishOrder = (req, res, next)=>{
-    Order.findOne({_id: req.body._id}, (err, order)=>{
-        order.status = req.body.status;
-        order.save((err) =>{
-            if(err){
-                if(err.errors){
-                    res.json({sucess:false, message: 'Pedido não finalizado'});
-                }
-            }else{
-                res.json({sucess: true, message:'Pedido finalizado'});
-                console.log(res.json);
-            }
-        })
-
-    } )
-}
+    var orderId = req.params.id;    
+    var data = req.body.status;  
+    console.log("my data", data)
+    Order.findOneAndUpdate( { _id: orderId }, { $set: { status: data } }, { upsert: true }, function(err, order){       
+        console.log(order);
+        if (err) {
+            res.json({ success: false, msg: 'Failed to update status' });
+        }
+        else {
+            res.json({ success: true, msg: 'Order is updated to On The Way' });
+        }
+    });
+  }

@@ -1,7 +1,10 @@
 const User = require('../model/user'); // Import User Model Schema
 const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
 const config = require('../config/database'); // Import database configuration
-
+const assert = require('assert');
+var FCM = require('fcm-node');
+var serverKey = 'AAAA6HgzMSw:APA91bF8VyfUYlyaEeObcDWd8FhiaU_qR6o6AvgTVFhezs7pSkAb3zSOsaUDMKOxRUM5kR4v1-Cnm_8i7TIsyshsOub1xJMIdu6UNVwNabirdVW4bG4kNlHwIjsUrdZv9HEqdDax-5PC'; //put your server key here
+var fcm = new FCM(serverKey);
 exports.register = (req, res, next)=>{
   // Check if email was provided
   if (!req.body.email) {
@@ -238,10 +241,14 @@ return res.status(201).json({
      });
    };
    exports.updateUser = (req, res)=>{
+     
     var userId = req.params.id;
-    var update = req.body;  
-    console.log('minha atualização',update)
-    User.findByIdAndUpdate(userId, update,  {_id: req.body._id},  (err, user) => {
+    var data = req.body.registerfcm;  
+    
+    myresult =  data.split();
+    console.log('minha atualização', myresult)
+   
+    User.findByIdAndUpdate(userId, data,  {_id: req.body._id},  (err, user) => {
       console.log('meu user', user);
      
       if(err){
@@ -250,9 +257,11 @@ return res.status(201).json({
         if(!user){
           res.status(404).send({message: 'No se ha podido actualizar el usuario'});
         }else{
-          res.status(200).send({success: true, message: 'usuário atualizado'});
-        }
-      }
+          
+      res.status(200).send({success: true, message: 'usuário atualizado'});
+    }
+  }
+     
     });
   
    }
@@ -282,28 +291,18 @@ json: data
 })
 
    }
-   exports.usernotifyAdd = (req, res)=> {
-    const data = req.body;
-    const headers = {
-      "operation": "add",
-      "notification_key_name": "mana-burguer-music",
-      "notification_key": "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm",
-      'Content-Type': 'application/json'
-}
-
-const options = {
-uri: 'https://fcm.googleapis.com/fcm/notification',
-method: 'POST',
-headers: headers,
-json: data
-}
-
-    request(options, function (err, res, body) {
-        if (err) {
-          res.status(404).send({message: 'Não autorizado receber notificação'});
-        }
-        console.log(body)
-        res.status(200).send({success: true, message: 'usuário atualizado'});
+   exports.usernotifySubscribe = (req, res)=> {
+    var data = req.body.registerfcm;  
+    
+    myresult =  data.split();
+    
+    console.log("verificar", myresult)
+    fcm.subscribeToTopic( myresult, 'mana-music', (err, response) => {
+      if(err){
+        console.log('error found', err);
+    }else {
+        console.log('response here', response);
+    }     
 })
 
    }
