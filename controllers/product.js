@@ -17,44 +17,37 @@ cloudinary.config({
     transformation: [{ width: 500, height: 500, crop: "limit" }]
     });
    
-exports.addProduct = (req, res, next)=>{   
-    var result;
-    const upload = multer({ storage: storage }).array('files', 6);
-   
+exports.addProduct = (req, res, next) => {
+    const upload = multer({ storage: storage }).array('files[]', 12);
     upload(req, res, function (err) {
         if (err) {
             console.log(err, 'erro no upload')
-        }else{
-             files = req.files;
             
-            cloudinary.config({
-                cloud_name: 'djbfmiwlg',
-                api_key: '935956179985733',
-                api_secret: 'paNLYmeQHHPGXFHSI23PeDkzVqM'
-              });
-              console.log('before', files[0].url)
+        }
+        console.log("before", req.files)
+        files = req.files;
             
-          }
-         
-          
-     
-   const product = new Product ({
-  
-        url: files,
-        title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        price: req.body.price     
+        
        
-   })
-   product.save((err, product)=>{
-       if(err){
-           res.json({success: false, message: err});
-       }else{
-           res.json({success: true, message: 'created product' });
-       }
-   })
-}) 
+         
+        const product = new Product({
+            
+            url: files,
+            title: req.body.title,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price
+
+        })
+        console.log(product);
+        product.save((err, product) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                res.json({ success: true, message: 'created product' });
+            }
+        })
+    })
 };
 
 exports.getProducts = (req, res, next)=>{
