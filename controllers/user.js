@@ -245,7 +245,7 @@ return res.status(201).json({
     var userId = req.params.id;
     var data = req.body.registerfcm;  
     
-    myresult =  data.split();
+    myresult =  data.split(); 
     console.log('minha atualização', myresult)
    
     User.findByIdAndUpdate(userId, data,  {_id: req.body._id},  (err, user) => {
