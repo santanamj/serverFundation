@@ -32,7 +32,7 @@ exports.oneCategories = (req, res) =>{
         res.json({success: categories});
       });
   };
-exports.ProductCategory = (req, res) => {
+exports.ProductCategory = (req, res) =>{
     var categoryId = req.params.id;
     Category.findById(categoryId).populate('products').exec((err, category) => {
         return res.json({ category: category }), console.log('ProductCategory', category);
