@@ -7,11 +7,12 @@ const now = moment();
 const dateToStore = '2018-01-27 10:30'
 moment().utcOffset(); // 60 minutes
 const timeZone = 'America/Bahia' // 'UTC-03:00'
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const productSchema = new Schema({
     title: {type: String},
     description: {type: String},
-    category: {type: Schema.Types.ObjectId, ref: 'Category'},
+    category: {type: ObjectId, ref: 'Category'},
     price: {type:Number},
     createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
     url: [{
