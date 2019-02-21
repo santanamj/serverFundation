@@ -25,4 +25,17 @@ exports.getCategory = (req, res, next)=>{
         }
     })
 }
+exports.oneCategories = (req, res) =>{
+    var categoryId = req.params.id;
+      Category.findById(categoryId).populate('products').exec((err, categories) => {
+        console.log("categories:", categories);
+        res.json({success: categories});
+      });
+  };
+exports.ProductCategory = (req, res) => {
+    var categoryId = req.params.id;
+    Category.findById(categoryId).populate('products').exec((err, category) => {
+        return res.json({ category: category }), console.log('ProductCategory', category);
+    });
+};
 

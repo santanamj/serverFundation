@@ -2,6 +2,12 @@ const mongoose = require ('mongoose');
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
+const moment = require('moment')
+const momentTz = require('moment-timezone')
+const now = moment();
+const dateToStore = '2018-01-27 10:30'
+moment().utcOffset(); // 60 minutes
+const timeZone = 'America/Bahia' // 'UTC-03:00'
 productSchema  = mongoose.model('Product').schema;
 const orderSchema = new Schema({
   status:{
@@ -9,11 +15,15 @@ const orderSchema = new Schema({
     enum: ['completo', 'aberto'],
     default: 'aberto'
   },
+  createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
+  
     orders:
   [{
    productId:{type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'},
     quantity:{type:Number},
+    mesa: {type:String},
+   obs: {type: String},
     product: productSchema
   }]
   

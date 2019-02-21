@@ -22,16 +22,10 @@ exports.addProduct = (req, res, next) => {
     upload(req, res, function (err) {
         if (err) {
             console.log(err, 'erro no upload')
-            
         }
         console.log("before", req.files)
         files = req.files;
-            
-        
-       
-         
         const product = new Product({
-            
             url: files,
             title: req.body.title,
             description: req.body.description,
