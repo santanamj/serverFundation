@@ -266,32 +266,7 @@ return res.status(201).json({
   
    }
 
-   exports.usernotifyRemove = (req, res)=> {
-    const data = req.body;
-    const headers = {
-      "operation": "remove",
-      "notification_key_name": "mana-burguer-music",
-      "notification_key": "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
-      'Content-Type': 'application/json'
-}
-
-const options = {
-uri: 'https://fcm.googleapis.com/fcm/notification',
-method: 'POST',
-headers: headers,
-json: data
-}
-
-    request(options, function (err, res, body) {
-        if (err) {
-          res.status(404).send({message: 'Não autorizado receber notificação'});
-        }
-        console.log(body)
-        res.status(200).send({success: true, message: 'usuário atualizado'});
-})
-
-   }
-   exports.usernotifySubscribe = (req, res)=> {
+    exports.usernotifySubscribe = (req, res)=> {
     var data = req.body.registerfcm;  
     
     myresult =  data.split();
@@ -304,8 +279,22 @@ json: data
         console.log('response here', response);
     }     
 })
+}
+exports.userremovenotify = (req, res)=> {
+  var data = req.body.registerfcm;  
+  
+  myresult =  data.split();
+  
+  console.log("verificar", myresult)
+  fcm.unsubscribeFromTopic( myresult, 'mana-music', (err, response) => {
+    if(err){
+      console.log('error found', err);
+  }else {
+      console.log('response here', response);
+  }     
+})
+}
 
-   }
 
 //    {
 //     "notification_key": "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm"
