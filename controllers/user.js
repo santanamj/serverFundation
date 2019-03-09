@@ -248,7 +248,7 @@ exports.updateUser = (req, res) => {
   myresult = data.split();
   console.log('minha atualização', myresult)
 
-  User.findByIdAndUpdate(userId, data, { _id: req.body._id }, (err, user) => {
+  User.findByIdAndUpdate(userId,  {$set: {registerfcm: myresult}}, {new: true},(err, user) => {
     console.log('meu user', user);
 
     if (err) {
