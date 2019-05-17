@@ -10,20 +10,29 @@ moment().utcOffset(); // 60 minutes
 const timeZone = 'America/Bahia' // 'UTC-03:00'
 productSchema  = mongoose.model('Product').schema;
 const orderSchema = new Schema({
+  numberOrder: {type: String},
+ 
   status:{
     type: String,
     enum: ['completo', 'aberto'],
     default: 'aberto'
   },
-  createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
   
+  pagamento:{
+    type: String,
+    enum: ['pago', 'pagamentoAberto'],
+    default: 'pagamentoAberto'
+  },
+  createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },  
     orders:
   [{
    productId:{type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'},
     quantity:{type:Number},
     mesa: {type:String},
-   obs: {type: String},
+    obs: {type: String},
+    totalCart:{ type: String},
+    clientName:{type: String},
     product: productSchema
   }]
   
