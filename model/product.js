@@ -27,6 +27,15 @@ const productSchema = new Schema({
   filename: { type: String },
   path: { type: String },
   size: { type: Number }
-});
+},
+  {  toJSON: {virtuals: true},
+  toObjetic: {virtuals: true}
+ });
+ productSchema.virtual('subproducts',{
+     ref: 'Subproducts',
+     localField:'_id',
+     foreignField:'product'
+     });
+
 
 module.exports = mongoose.model('Product', productSchema);
