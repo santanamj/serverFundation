@@ -23,7 +23,6 @@ exports.getBairro = (req, res, next)=>{
         if(err){
             res.json({success: false, message: err})
         }else{
-           console.log(bairros)
         res.send(bairros);
         }
     })

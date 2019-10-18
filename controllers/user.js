@@ -98,7 +98,6 @@ exports.login = (req, res, next) => {
                 message: 'Success!',
                 token: token,
                 user: {
-
                   username: user.username
 
                 }
@@ -165,7 +164,6 @@ exports.use = (req, res, next) => {
       } else {
         console.log(decoded)
         req.decoded = decoded;
-
         next();
       }
     });

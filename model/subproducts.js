@@ -9,10 +9,10 @@ moment().utcOffset(); // 60 minutes
 const timeZone = 'America/Bahia' // 'UTC-03:00'
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const subproductSchema = new Schema({
+const SubProductSchema = new Schema({
     title: {type: String},   
     product: {type: ObjectId, ref: 'Product'},   
     createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
 });
 
-module.exports = mongoose.model('Subproducts', subproductSchema);
+module.exports = mongoose.model('Subproducts', SubProductSchema);

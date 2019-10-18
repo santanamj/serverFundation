@@ -94,12 +94,12 @@ const userSchema = new Schema({
   name: {type: String},
   email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
   username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
-  password: { type: String, required: true },
-  
+  password: { type: String, required: true },  
   registerfcm: {type: String},
+  
   role: {
     type: String,
-    enum: ['cozinha', 'atendimento', 'gerente', 'adm'],
+    enum: ['cozinha', 'atendimento', 'gerente', 'adm', 'client'],
     default: 'atendimento'
 }
 });

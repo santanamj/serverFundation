@@ -4,7 +4,7 @@ const express =  require ('express');
 
 var api = express.Router();
 
-api.post('/addSubproduct', subproductController.addSubproduct);
-api.get('/getSubproducts',  subproductController.getSubproducts );
+api.post('/addSubProduct', subproductController.addSubProduct);
+api.get('/getSubproduct', subproductController.getSubproduct);
 
 module.exports = api;

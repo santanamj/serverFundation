@@ -17,7 +17,7 @@ const orderSchema = new Schema({
     enum: ['completo', 'aberto'],
     default: 'aberto'
   },
-  
+  mesa: {type:String},
   pagamento:{
     type: String,
     enum: ['pago', 'pagamentoAberto'],
@@ -28,8 +28,9 @@ const orderSchema = new Schema({
   [{
    productId:{type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'},
+    sabores:Array,
     quantity:{type:Number},
-    mesa: {type:String},
+    
     obs: {type: String},
     totalCart:{ type: String},
     clientName:{type: String},

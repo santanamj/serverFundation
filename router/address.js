@@ -1,10 +1,11 @@
 const addressController = require ('./../controllers/address');
-const express = require ('express');
+const AuthenticationControler = require ('../controllers/user'),
+express = require ('express');
 
 var api = express.Router();
 
-api.post('/newAddress', addressController.newAddress);
-api.get('/getAddress', addressController.getAddress);
-api.get('/oneAddresses/:id', addressController.oneAddresses);
-api.get('/ProductAddress',   addressController.ProductAddress);
+api.post('/newAddress', AuthenticationControler.use, addressController.newAddress);
+api.get('/getAddress', AuthenticationControler.use, addressController.getAddress);
+api.get('/oneAddresses/:id', AuthenticationControler.use, addressController.oneAddresses);
+
 module.exports = api;

@@ -16,10 +16,14 @@ const server = app.listen(app.get('port'), function() {
 const io = require('socket.io').listen(server);
 const env = require('./env');
 const authentication = require ('./router/user');
+
 const category = require ('./router/category');
 const product = require ('./router/product');
 const order = require ('./router/order');
+const bairro = require ('./router/bairro');
+const address = require ('./router/address');
 const orderController = require ('./controllers/order');
+const subproduct = require('./router/subproducts');
 app.use(cors('Access-Control-Allow-Origin', '*'));
 
 io.on('connection', (socket)=>{
@@ -50,11 +54,14 @@ app.use(logger('dev'));
 SourceMapSupport.install();
 
 app.use(bodyParser.json());
-
+app.use('/api', address)
+app.use('/api', bairro);
 app.use('/api', category);
 app.use('/api', product);
+app.use('/api', subproduct);
 app.use('/api', order);
 app.use('/api', authentication);
+
 // app.use('/api', pedido);
 
 

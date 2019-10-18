@@ -13,6 +13,7 @@ const productSchema = new Schema({
     title: {type: String},
     description: {type: String},
     category: {type: ObjectId, ref: 'Category'},
+    sabores: Array,
     price: {type:Number},
     createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
     url: [{

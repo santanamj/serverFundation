@@ -25,13 +25,17 @@ exports.addProduct = (req, res, next) => {
         }
         console.log("before", req.files)
         files = req.files;
+        console.log('meus sabores', req.body)
+        const mysabor = JSON.parse(req.body.sabores);
+        console.log('meus sabores', mysabor)
+        
         const product = new Product({
             url: files,
             title: req.body.title,
             description: req.body.description,
             category: req.body.category,
+            sabores: mysabor,
             price: req.body.price
-
         })
         console.log(product);
         product.save((err, product) => {
@@ -50,20 +54,27 @@ exports.getProducts = (req, res, next)=>{
             res.json({success:false, err} )
         }else{
             res.send(products)
+            
         }
     })
 }
 exports.getProduct = (req, res, next)=>{
     const productId = req.params.id;
-    Product.findById(productId,(err, product)=>{
+    Product.findById(productId).populate('subproducts').exec((err, product)=>{
         if(err){
             res.status(500).send({message: 'Erro na solicitação'})
         }else{
             if(!product){
             res.status(404).send({message:'Pedido não existe'})
         }else{
-            res.status(200).send({product});
+            res.status(200).send({product}), console.log('SubProduct', product);
         }
     }
     })
 }
+exports.SubProduct = (req, res) =>{
+    var productId = req.params.id;
+    Product.findById(productId).populate('subproducts').exec((err, products) => {
+        return res.send({ success: products }), console.log('SubProduct', products);
+    });
+};

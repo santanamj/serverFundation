@@ -4,7 +4,7 @@ const Schema =  mongoose.Schema;
 
 const bairroSchema = new Schema({
     title: {type: String},
-    const: {type: Number},       
+    cost: {type: Number},       
 },
 {  toJSON: {virtuals: true},
  toObjetic: {virtuals: true}

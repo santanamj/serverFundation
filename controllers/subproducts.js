@@ -1,5 +1,5 @@
 const Product = require ('./../model/product');
-const Subproducts = require ('./../model/subproducts');
+const Subproduct = require ('./../model/subproducts');
 const fs = require ('fs');
 const multer = require ('multer');
 const cloudinary = require('cloudinary');
@@ -17,39 +17,29 @@ cloudinary.config({
     transformation: [{ width: 500, height: 500, crop: "limit" }]
     });
    
-exports.addSubproduct = (req, res, next) => {
-    const upload = multer({ storage: storage }).array('files[]', 12);
-    upload(req, res, function (err) {
-        if (err) {
-            console.log(err, 'erro no upload')
-        }
-        console.log("before", req.files)
-        files = req.files;
-        const product = new Product({
-            url: files,
+exports.addSubProduct = (req, res, next) => {
+   
+        const subproduct = new SubProduct({
             title: req.body.title,
-            description: req.body.description,
-            category: req.body.category,
-            price: req.body.price
-
+            product: req.body.product
         })
-        console.log(product);
-        product.save((err, product) => {
+       
+        subproduct.save((err, subproduct) => {
             if (err) {
                 res.json({ success: false, message: err });
             } else {
-                res.json({ success: true, message: 'created product' });
+                res.json({ success: true, message: 'created SubProduct' });
             }
         })
-    })
-};
+    }
+
 
 exports.getSubproduct = (req, res, next)=>{
-    Subproduct.find({}, (err, products)=>{
+    Subproduct.find({}, (err, subproducts)=>{
         if(err){
             res.json({success:false, err} )
         }else{
-            res.send(products)
+            res.send(subproducts)
         }
     })
 }

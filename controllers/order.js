@@ -9,10 +9,15 @@ var serverKey = 'AAAA6HgzMSw:APA91bF8VyfUYlyaEeObcDWd8FhiaU_qR6o6AvgTVFhezs7pSkA
 var fcm = new FCM(serverKey);
 const idnumberOrder = randomize('A0', 6);
 exports.addOrder = (req, res, next) => {
-
+  
+    const myNewArray = Object.assign(...[...new Set(req.body.map(obj => obj.mesa )
+        .filter(el=> el != null))])
+    console.log('meu novo pedido', myNewArray)
     const order = new Order({
-        orders: req.body,
-        numberOrder: idnumberOrder
+        orders: myNewArray,
+        numberOrder: idnumberOrder,
+        mesa: myNewArray
+        
     })
 
     order.save((err, order) => {
@@ -89,9 +94,10 @@ exports.getOrders = (req, res, next) => {
     })
 }
 exports.searchOrder = (req, res, next) => {
+    var m = req.query.mesa;
     var q = req.query.pagamento;
     var p = req.query.status;
-    console.log(q)
+    console.log(q, p, m)
     var startDate = req.query.createdAt;
     console.log('my date', startDate)
     var end = req.query.end;
@@ -101,6 +107,9 @@ exports.searchOrder = (req, res, next) => {
          },
          status: { 
             $regex: new RegExp(p)
+         },
+         mesa:{
+             $regex: new RegExp(m)
          }      
         },     
       (err, orders) => {
