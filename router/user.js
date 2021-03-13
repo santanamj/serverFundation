@@ -11,7 +11,5 @@ api.get('/checkEmail/:email', AuthenticationControler.checkEmail);
 api.get('/checkUsername/:username', AuthenticationControler.checkUsername);
 api.get('/profile', AuthenticationControler.use, AuthenticationControler.profile);
 api.get('/profile/:id', AuthenticationControler.use, AuthenticationControler.profile);
-api.put('/updateUser/:id', AuthenticationControler.use, AuthenticationControler.updateUser);
-api.post('/usernotifySubscribe', AuthenticationControler.use, AuthenticationControler.usernotifySubscribe);
-api.post('/userremovenotify', AuthenticationControler.use, AuthenticationControler.userremovenotify);
+
 module.exports = api;

@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing 
 const config = require('../config/database'); // Import database configuration
 const assert = require('assert');
 var FCM = require('fcm-node');
-var serverKey = 'AAAA6HgzMSw:APA91bF8VyfUYlyaEeObcDWd8FhiaU_qR6o6AvgTVFhezs7pSkAb3zSOsaUDMKOxRUM5kR4v1-Cnm_8i7TIsyshsOub1xJMIdu6UNVwNabirdVW4bG4kNlHwIjsUrdZv9HEqdDax-5PC'; //put your server key here
-var fcm = new FCM(serverKey);
+
 exports.register = (req, res, next) => {
   // Check if email was provided
   if (!req.body.email) {
@@ -234,67 +233,9 @@ exports.profile = (req, res) => {
     }
   });
 };
-exports.updateUser = (req, res) => {
-
-  var userId = req.params.id;
-  var data = req.body.registerfcm;
-
-  myresult = data.split();
-  console.log('minha atualização', myresult)
-
-  User.findByIdAndUpdate(userId,  {$set: {registerfcm: myresult}}, {new: true},(err, user) => {
-    console.log('meu user', user);
-
-    if (err) {
-      res.status(500).send({ message: 'Error al actualizar el usuario' });
-    } else {
-      if (!user) {
-        res.status(404).send({ message: 'No se ha podido actualizar el usuario' });
-      } else {
-
-        res.status(200).send({ success: true, message: 'usuário atualizado' });
-      }
-    }
-
-  });
-
-}
-
-exports.usernotifySubscribe = (req, res) => {
-  var data = req.body.registerfcm;
-
-  myresult = data.split();
-
-  console.log("verificar", myresult)
-  fcm.subscribeToTopic(myresult, 'mana-music', (err, response) => {
-    if (err) {
-      console.log('error found', err);
-    } else {
-      console.log('response here', response);
-    }
-  })
-}
-exports.userremovenotify = (req, res) => {
-  var data = req.body.registerfcm;
-  myresult = data.split();
-  console.log("verificar", myresult)
-  fcm.unsubscribeToTopic(myresult, 'mana-music', (err, response) => {
-    if (err) {
-      console.log('error found', err);
-    } else {
-      console.log('response here', response);
-    }
-  })
-}
 
 
-//    {
-//     "notification_key": "APA91bHb6Ngs8pHskbPVnoBPl4DkWweNx3z77_Wjv4EdEVoI8x9qQOkleSZGZ_ThemH50hcM8-t10qq_HIYf0Iu9NkDbWYQBaUy4SgjTyPKv_rQC2KDhVrokAldd2XfF__iF41Q9wRzm"
-// }
 
-// {
-//   "operation": "add",
-//   "notification_key_name": "mana-burguer-music",
-//   "notification_key": "APA91bHYnJyCSDyOKB2i7hTC87vTH5H84tEH9q8gCm8vjMW-ivjHfnohNz6wsb7MBZpdBO6bRcweEcXUh5oHgn9CH2lMyvuqeHhW940jeWCAiDWgCXibs7oavhbtFMunya1DqTN8YuEo",
-//   "registration_ids": ["eKpKFXy6_bQ:APA91bEt2iiOoD-pRFyLvUuGc7XBzkm3oMrE1yhEZRAl6AZsLEK-wT7dJQVyxn7IAHco2kaHKqb3kMSY7GjkRa1874E1WNeCWnw8jcEVeq9ysoDh5lyGT7cOFwaQy6xK05OWI0mFZ0bK"]
-// }
+
+
+
