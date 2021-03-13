@@ -23,11 +23,10 @@ exports.register = (req, res, next) => {
           email: req.body.email.toLowerCase(),
           username: req.body.username.toLowerCase(),
           password: req.body.password,
-          condominio: req.body.condominio,
           name: req.body.name,
-          role: req.body.role,
-          registerfcm: req.body.registerfcm
+          role: req.body.role
         });
+        console.log(user);
         // Save user to database
         user.save((err) => {
           // Check if error occured
@@ -59,6 +58,7 @@ exports.register = (req, res, next) => {
               }
             }
           } else {
+            console.log({success: true})
             res.json({ success: true, message: 'Usuário registrado com sucesso!' }); // Return success
           }
         });
@@ -122,16 +122,12 @@ exports.roleAuthorization = (roles) => {
         res.status(422).json({ error: 'Usuario não encontrado.' });
         return next(err);
       }
-
       if (roles.indexOf(foundUser.role) > -1) {
         return next();
       }
-
       res.status(401).json({ error: 'Não está autorizado para acessar o conteúdo.' });
       return next('Unauthorized');
-
     });
-
   }
 
 }
@@ -156,13 +152,13 @@ exports.token = (req, res, next) => {
 exports.use = (req, res, next) => {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['authorization'];
-  //console.log(token);
+  console.log(token);
   if (token) {
     jwt.verify(token, config.secret, function (err, decoded) {
       if (err) {
         return res.status(201).json({ success: false, message: 'Authenticate token expired, please login again.', errcode: 'exp-token' });
       } else {
-        console.log(decoded)
+       // console.log(decoded)
         req.decoded = decoded;
         next();
       }
@@ -233,7 +229,7 @@ exports.profile = (req, res) => {
         res.json({ success: false, message: 'User not found' }); // Return error, user was not found in db
       } else {
         res.json({ success: true, user: user }); // Return success, send user object to frontend for profile
-
+      
       }
     }
   });

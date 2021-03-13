@@ -11,8 +11,10 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const SubProductSchema = new Schema({
     title: {type: String},   
-    product: {type: ObjectId, ref: 'Product'},   
+    tipoPizza: {type: String},   
+    description: {type:String},
+    category: {type: ObjectId, ref: 'Category'},
     createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
 });
 
-module.exports = mongoose.model('Subproducts', SubProductSchema);
+module.exports = mongoose.model('Subproduct', SubProductSchema);

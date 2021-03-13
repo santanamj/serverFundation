@@ -1,4 +1,5 @@
 const Category = require ('./../model/category.js');
+const Subproduct = require('./../model/subproducts');
 const config = require ('./../config/database');
 const multer = require ('multer');
 const cloudinary = require('cloudinary');
@@ -50,9 +51,18 @@ exports.getCategory = (req, res, next)=>{
 }
 exports.oneCategories = (req, res) =>{
     var categoryId = req.params.id;
-      Category.findById(categoryId).populate('products').exec((err, categories) => {
-        console.log("categories:", categories);
-        res.send({success: categories});
+      Category.findById(categoryId).exec((err, category) => {
+        Subproduct.find({}, (err, subproducts)=>{
+            if(err){
+                res.json({success: false})
+            }else{
+                const prodcat = subproducts.filter(subproduct => String(subproduct.category) == String(categoryId))
+                return res.send({ subproducts: prodcat, success: category }), 
+                console.log("categories:", subproducts),
+                console.log("categories:", category)
+            }
+        })  
+       
       });
   };
 exports.ProductCategory = (req, res) =>{

@@ -12,9 +12,10 @@ const categorySchema = new Schema({
     title: {type: String},
     description: {type: String},
     url: [{
-        url: String,
+        secure_url: String,
         values: Schema.Types.Mixed
     }],
+    
     createdAt: { type: String, default: () => moment().format("DD-MM-YYYY, HH:mm:ss") },
     
 },

@@ -25,16 +25,15 @@ exports.addProduct = (req, res, next) => {
         }
         console.log("before", req.files)
         files = req.files;
-        console.log('meus sabores', req.body)
-        const mysabor = JSON.parse(req.body.sabores);
-        console.log('meus sabores', mysabor)
-        
+        const tipoPizza = req.body.tipoPizza.split(',');
+        const subId = req.body.subproducts.split(',');
+           
         const product = new Product({
             url: files,
             title: req.body.title,
-            description: req.body.description,
-            category: req.body.category,
-            sabores: mysabor,
+            description: req.body.description,            
+            tipoPizza: tipoPizza,
+            subId:subId,
             price: req.body.price
         })
         console.log(product);
@@ -50,17 +49,20 @@ exports.addProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next)=>{
     Product.find({}, (err, products)=>{
+        console.log(products)
         if(err){
             res.json({success:false, err} )
         }else{
             res.send(products)
-            
+            console.log(products)
         }
-    })
+    }).sort({ '_id': -1 }); // Sort orders from newest to oldest
 }
 exports.getProduct = (req, res, next)=>{
+    console.log(req.params.id)
     const productId = req.params.id;
-    Product.findById(productId).populate('subproducts').exec((err, product)=>{
+    Product.findById(productId).populate().exec((err, product)=>{
+        console.log('meu', product)
         if(err){
             res.status(500).send({message: 'Erro na solicitação'})
         }else{
